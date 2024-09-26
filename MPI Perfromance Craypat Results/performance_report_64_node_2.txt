@@ -1,0 +1,672 @@
+Using existing ./index.ap2.
+CrayPat/X:  Version 23.12.0 Revision 67ffc52e7 sles15.4_x86_64  11/13/23 21:04:20
+
+Number of PEs (MPI ranks):   64  total, 32 with data in .ap2
+                           
+Numbers of PEs per Node:     32
+                           
+Numbers of Threads per PE:    1
+                           
+Number of Cores per Socket:  64
+
+Execution start time:  Fri May 31 11:57:50 2024
+
+System name and speed:  nid001904  2.384 GHz (nominal)
+
+AMD   Rome                 CPU  Family: 23  Model: 49  Stepping:  0
+
+Core Performance Boost:  All 32 PEs have CPB capability
+
+Current path to data file:
+  /cfs/klemming/home/e/edarth/project/pats_64/xf-files/000000.ap2   (RTS)
+
+
+Notes for table 1:
+
+  This table shows functions that have significant exclusive sample
+    hits, averaged across ranks.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O samp_profile ...
+
+Table 1:  Sample Profile by Function
+
+  Samp% | Samp | Imb. |  Imb. | Group
+        |      | Samp | Samp% |  Function
+        |      |      |       |   PE=HIDE
+       
+ 100.0% | 75.5 |   -- |    -- | Total
+|--------------------------------------------------------
+|  59.3% | 44.8 |   -- |    -- | USER
+||-------------------------------------------------------
+||  34.9% | 26.3 |  8.7 | 25.6% | simulation_mpi
+||   9.9% |  7.5 |  8.5 | 55.0% | std::vector<>::operator[]
+||   6.7% |  5.1 |  4.9 | 50.6% | std::generate_canonical<>
+||   3.5% |  2.7 |  3.3 | 57.5% | benchmark_simulation
+||   1.7% |  1.3 |  2.7 | 69.4% | std::log
+||=======================================================
+|  23.4% | 17.7 |   -- |    -- | ETC
+||-------------------------------------------------------
+||  10.3% |  7.8 |  6.2 | 46.1% | __cos_fma
+||   7.3% |  5.5 |  4.5 | 46.5% | __ieee754_logl
+||   5.3% |  4.0 |  5.0 | 57.3% | __sin_fma
+||=======================================================
+|  15.3% | 11.6 |   -- |    -- | MPI
+||-------------------------------------------------------
+||   8.5% |  6.4 |  4.6 | 43.1% | MPI_Gatherv
+||   6.7% |  5.1 |  4.9 | 51.0% | MPI_Bcast
+||=======================================================
+|   2.0% |  1.5 |   -- |    -- | MATH
+||-------------------------------------------------------
+||   1.3% |  1.0 |  3.0 | 78.2% | logl
+|========================================================
+
+Notes for table 2:
+
+  This table shows functions that have the most significant exclusive
+    time, taking the maximum time across ranks and threads.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O profile_max ...
+
+Table 2:  Profile of maximum function times
+
+  Samp% | Samp | Imb. |   Imb. | Function
+        |      | Samp |  Samp% |  PE=[max,min]
+|-----------------------------------------------------------------------------
+| 100.0% | 35.0 |  8.7 |  25.6% | simulation_mpi
+||----------------------------------------------------------------------------
+|| 100.0% | 35.0 |   -- |     -- | pe.2
+||  60.0% | 21.0 |   -- |     -- | pe.13
+||============================================================================
+|  45.7% | 16.0 |  8.5 |  55.0% | std::vector<>::operator[]
+||----------------------------------------------------------------------------
+||  45.7% | 16.0 |   -- |     -- | pe.9
+||   2.9% |  1.0 |   -- |     -- | pe.22
+||============================================================================
+|  40.0% | 14.0 |  6.2 |  46.1% | __cos_fma
+||----------------------------------------------------------------------------
+||  40.0% | 14.0 |   -- |     -- | pe.23
+||   8.6% |  3.0 |   -- |     -- | pe.26
+||============================================================================
+|  31.4% | 11.0 |  4.6 |  43.1% | MPI_Gatherv
+||----------------------------------------------------------------------------
+||  31.4% | 11.0 |   -- |     -- | pe.12
+||   0.0% |  0.0 |   -- |     -- | pe.8
+||============================================================================
+|  28.6% | 10.0 |  4.9 |  51.0% | MPI_Bcast
+||----------------------------------------------------------------------------
+||  28.6% | 10.0 |   -- |     -- | pe.26
+||   0.0% |  0.0 |   -- |     -- | pe.12
+||============================================================================
+|  28.6% | 10.0 |  4.9 |  50.6% | std::generate_canonical<>
+||----------------------------------------------------------------------------
+||  28.6% | 10.0 |   -- |     -- | pe.15
+||   5.7% |  2.0 |   -- |     -- | pe.9
+||============================================================================
+|  28.6% | 10.0 |  4.5 |  46.5% | __ieee754_logl
+||----------------------------------------------------------------------------
+||  28.6% | 10.0 |   -- |     -- | pe.28
+||   2.9% |  1.0 |   -- |     -- | pe.5
+||============================================================================
+|  25.7% |  9.0 |  5.0 |  57.3% | __sin_fma
+||----------------------------------------------------------------------------
+||  25.7% |  9.0 |   -- |     -- | pe.9
+||   2.9% |  1.0 |   -- |     -- | pe.26
+||============================================================================
+|  17.1% |  6.0 |  3.3 |  57.5% | benchmark_simulation
+||----------------------------------------------------------------------------
+||  17.1% |  6.0 |   -- |     -- | pe.28
+||   0.0% |  0.0 |   -- |     -- | pe.11
+||============================================================================
+|  14.3% |  5.0 |  4.6 |  94.8% | std::__detail::_Adaptor<>::_Adaptor
+||----------------------------------------------------------------------------
+||  14.3% |  5.0 |   -- |     -- | pe.0
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|  11.4% |  4.0 |  2.7 |  69.4% | std::log
+||----------------------------------------------------------------------------
+||  11.4% |  4.0 |   -- |     -- | pe.8
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|  11.4% |  4.0 |  3.0 |  78.2% | logl
+||----------------------------------------------------------------------------
+||  11.4% |  4.0 |   -- |     -- | pe.26
+||   0.0% |  0.0 |   -- |     -- | pe.29
+||============================================================================
+|   5.7% |  2.0 |  1.6 |  82.3% | std::uniform_real_distribution<>::operator()<>
+||----------------------------------------------------------------------------
+||   5.7% |  2.0 |   -- |     -- | pe.8
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   5.7% |  2.0 |  1.5 |  79.0% | fmod
+||----------------------------------------------------------------------------
+||   5.7% |  2.0 |   -- |     -- | pe.15
+||   0.0% |  0.0 |   -- |     -- | pe.28
+||============================================================================
+|   5.7% |  2.0 |  1.7 |  88.7% | std::max<>
+||----------------------------------------------------------------------------
+||   5.7% |  2.0 |   -- |     -- | pe.17
+||   0.0% |  0.0 |   -- |     -- | pe.30
+||============================================================================
+|   5.7% |  2.0 |  1.9 |  96.8% | __fmod_finite
+||----------------------------------------------------------------------------
+||   5.7% |  2.0 |   -- |     -- | pe.26
+||   0.0% |  0.0 |   -- |     -- | pe.30
+||============================================================================
+|   2.9% |  1.0 |  1.0 | 100.0% | MPI_Comm_rank
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.23
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  93.5% | std::__detail::_Adaptor<>::operator()
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.5
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  1.0 | 100.0% | _int_free
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.0
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  90.3% | std::ios_base::Init::~Init
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.0
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  96.8% | MPI_Finalize
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.2
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  93.5% | std::__fill_a1<>
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.1
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  96.8% | std::uniform_real_distribution<>::param_type::b
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.1
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  90.3% | std::linear_congruential_engine<>::operator()
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.10
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  93.5% | std::__detail::__mod<>
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.13
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  96.8% | std::__detail::_Mod<>::__calc
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.2
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  96.8% | atan2
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.3
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  93.5% | std::linear_congruential_engine<>::max
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.3
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  93.5% | std::linear_congruential_engine<>::min
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.4
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  1.0 | 100.0% | __cray_memmove_ROME
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.7
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  1.0 | 100.0% | __pat_memset
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.8
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  1.0 | 100.0% | _ULx86_64_tdep_trace
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.9
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  1.0 | 100.0% | std::min<>
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.12
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  0.9 |  96.8% | std::uniform_real_distribution<>::param_type::a
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.14
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  1.0 | 100.0% | dwarf_get_uc
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.18
+||   0.0% |  0.0 |   -- |     -- | pe.31
+||============================================================================
+|   2.9% |  1.0 |  1.0 | 100.0% | std::vector<>::_M_data_ptr<>
+||----------------------------------------------------------------------------
+||   2.9% |  1.0 |   -- |     -- | pe.31
+||   0.0% |  0.0 |   -- |     -- | pe.30
+|=============================================================================
+
+Notes for table 3:
+
+  This table shows functions, and line numbers within functions, that
+    have significant exclusive sample hits, averaged across ranks.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O samp_profile+src ...
+
+Table 3:  Sample Profile by Group, Function, and Line
+
+  Samp% | Samp | Imb. |  Imb. | Group
+        |      | Samp | Samp% |  Function
+        |      |      |       |   Source
+        |      |      |       |    Line
+        |      |      |       |     PE=HIDE
+       
+ 100.0% | 75.5 |   -- |    -- | Total
+|-------------------------------------------------------------
+|  59.3% | 44.8 |   -- |    -- | USER
+||------------------------------------------------------------
+||  34.9% | 26.3 |   -- |    -- | simulation_mpi
+3|        |      |      |       |  e/edarth/project/simulation.cc
+||||----------------------------------------------------------
+4|||   3.6% |  2.7 |  3.3 | 57.0% | line.179
+4|||  10.3% |  7.8 |  6.2 | 45.6% | line.181
+4|||  15.1% | 11.4 |  5.6 | 34.0% | line.182
+4|||   2.2% |  1.7 |  2.3 | 59.7% | line.184
+4|||   1.9% |  1.4 |  4.6 | 78.5% | line.188
+||||==========================================================
+||   9.9% |  7.5 |   -- |    -- | std::vector<>::operator[]
+3|        |      |      |       |  c++/12/bits/stl_vector.h
+||||----------------------------------------------------------
+4|||   1.0% |  0.7 |  2.3 | 78.5% | line.1124
+4|||   3.7% |  2.8 |  4.2 | 62.2% | line.1141
+4|||   1.5% |  1.2 |  2.8 | 73.4% | line.1143
+||||==========================================================
+||   6.7% |  5.1 |   -- |    -- | std::generate_canonical<>
+3|        |      |      |       |  c++/12/bits/random.tcc
+4|   2.6% |  2.0 |  5.0 | 73.7% |   line.3364
+||   3.5% |  2.7 |   -- |    -- | benchmark_simulation
+3|        |      |      |       |  e/edarth/project/benchmark.cc
+4|   1.2% |  0.9 |  2.1 | 73.1% |   line.88
+||   1.7% |  1.3 |  2.7 | 69.4% | std::log
+3|        |      |      |       |  include/c++/12/cmath
+4|        |      |      |       |   line.343
+||============================================================
+|  23.4% | 17.7 |   -- |    -- | ETC
+||------------------------------------------------------------
+||  10.3% |  7.8 |  6.2 | 46.1% | __cos_fma
+||   7.3% |  5.5 |  4.5 | 46.5% | __ieee754_logl
+||   5.3% |  4.0 |  5.0 | 57.3% | __sin_fma
+||============================================================
+|  15.3% | 11.6 |   -- |    -- | MPI
+||------------------------------------------------------------
+||   8.5% |  6.4 |  4.6 | 43.1% | MPI_Gatherv
+||   6.7% |  5.1 |  4.9 | 51.0% | MPI_Bcast
+||============================================================
+|   2.0% |  1.5 |   -- |    -- | MATH
+||------------------------------------------------------------
+||   1.3% |  1.0 |  3.0 | 78.2% | logl
+|=============================================================
+
+Notes for table 4:
+
+  This table shows HW performance counter data for the whole program,
+    averaged across ranks or threads, as applicable.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O hwpc ...
+
+Table 4:  Program HW Performance Counter Data
+
+PE=HIDE
+
+  
+==============================================================================
+  Total
+------------------------------------------------------------------------------
+  Thread Time                              0.793927 secs
+  CORE_TO_L2_CACHEABLE_REQUEST_ACCESS_STATUS:
+    LS_RD_BLK_C                             188,132 
+  L2_PREFETCH_HIT_L2                      1,272,253 
+  L2_PREFETCH_HIT_L3                        281,879 
+  REQUESTS_TO_L2_GROUP1:L2_HW_PF          1,719,798 
+  REQUESTS_TO_L2_GROUP1:RD_BLK_X            377,799 
+  Cache Lines PF from OffCore  0.564 M/sec  447,545 lines
+  Cache Lines PF from Memory   0.209 M/sec  165,666 lines
+  Cache Lines Requested from 
+    Memory                     0.088 M/sec   69,640 lines
+  Write Memory Traffic GBytes  0.003 G/sec     0.00 GB
+  Read Memory Traffic GBytes   0.019 G/sec     0.02 GB
+  Memory traffic GBytes        0.022 G/sec     0.02 GB
+  Memory Traffic / Nominal Peak                0.0% 
+==============================================================================
+
+Notes for table 5:
+
+  This table show the average time and number of bytes written to each
+    output file, taking the average over the number of ranks that
+    wrote to the file.  It also shows the number of write operations,
+    and average rates.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O write_stats ...
+
+Table 5:  File Output Stats by Filename
+
+      Avg |      Avg |  Write Rate | Number |    Avg | Bytes/ | File Name=!x/^/(proc|sys)/
+    Write |    Write | MiBytes/sec |     of | Writes |   Call |  PE=HIDE
+ Time per |  MiBytes |             | Writer |    per |        | 
+   Writer |      per |             |  Ranks | Writer |        | 
+     Rank |   Writer |             |        |   Rank |        | 
+          |     Rank |             |        |        |        | 
+|-----------------------------------------------------------------------------
+| 0.000086 | 0.001060 |   12.277552 |      1 |   19.0 |  58.53 | _UnknownFile_
+| 0.000006 | 0.000037 |    6.312508 |      1 |    5.0 |   7.80 | stdout
+|=============================================================================
+
+Notes for table 6:
+
+  This table shows energy and power usage for the nodes with the
+    maximum, mean, and minimum usage, as well as the sum of usage over
+    all nodes.
+    Energy and power for accelerators is also shown, if available.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O program_energy ...
+
+Table 6:  Program Energy and Power Usage from Cray PM
+
+PE=HIDE
+
+  
+==========================================================
+  Total
+----------------------------------------------------------
+  PM Energy Node    378 W      318 J
+  PM Energy Cpu     177 W      149 J
+  PM Energy Memory  130 W      109 J
+  Process Time            0.840755 secs
+==========================================================
+
+Notes for table 7:
+
+  This table shows values shown for HiMem calculated from information
+    in the /proc/self/numa_maps files captured near the end of the
+    program. It is the total size of all pages, including huge pages,
+    that were actually mapped into physical memory from both private
+    and shared memory segments.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O himem ...
+
+Table 7:  Memory High Water Mark by Numa Node
+
+Numanode / PE=HIDE
+
+  
+=============================================================================
+  numanode.0
+-----------------------------------------------------------------------------
+  Process HiMem (MiBytes)          105.2 
+  HiMem Numa Node 0 (MiBytes)       83.8 MiBytes
+  HiMem Numa Node 1 (MiBytes)        4.8 MiBytes
+  HiMem Numa Node 2 (MiBytes)        1.9 MiBytes
+  HiMem Numa Node 3 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 4 (MiBytes)        4.9 MiBytes
+  HiMem Numa Node 5 (MiBytes)        1.8 MiBytes
+  HiMem Numa Node 6 (MiBytes)        2.1 MiBytes
+  HiMem Numa Node 7 (MiBytes)        3.8 MiBytes
+=============================================================================
+  numanode.1
+-----------------------------------------------------------------------------
+  Process HiMem (MiBytes)          106.4 
+  HiMem Numa Node 0 (MiBytes)        2.6 MiBytes
+  HiMem Numa Node 1 (MiBytes)       86.0 MiBytes
+  HiMem Numa Node 2 (MiBytes)        2.1 MiBytes
+  HiMem Numa Node 3 (MiBytes)        2.5 MiBytes
+  HiMem Numa Node 4 (MiBytes)        5.0 MiBytes
+  HiMem Numa Node 5 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 6 (MiBytes)        2.2 MiBytes
+  HiMem Numa Node 7 (MiBytes)        4.0 MiBytes
+=============================================================================
+  numanode.2
+-----------------------------------------------------------------------------
+  Process HiMem (MiBytes)          105.0 
+  HiMem Numa Node 0 (MiBytes)        2.4 MiBytes
+  HiMem Numa Node 1 (MiBytes)        4.7 MiBytes
+  HiMem Numa Node 2 (MiBytes)       83.3 MiBytes
+  HiMem Numa Node 3 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 4 (MiBytes)        4.8 MiBytes
+  HiMem Numa Node 5 (MiBytes)        1.8 MiBytes
+  HiMem Numa Node 6 (MiBytes)        1.9 MiBytes
+  HiMem Numa Node 7 (MiBytes)        4.0 MiBytes
+=============================================================================
+  numanode.3
+-----------------------------------------------------------------------------
+  Process HiMem (MiBytes)          106.0 
+  HiMem Numa Node 0 (MiBytes)        2.5 MiBytes
+  HiMem Numa Node 1 (MiBytes)        5.0 MiBytes
+  HiMem Numa Node 2 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 3 (MiBytes)       83.3 MiBytes
+  HiMem Numa Node 4 (MiBytes)        5.0 MiBytes
+  HiMem Numa Node 5 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 6 (MiBytes)        2.2 MiBytes
+  HiMem Numa Node 7 (MiBytes)        4.0 MiBytes
+=============================================================================
+  numanode.4
+-----------------------------------------------------------------------------
+  Process HiMem (MiBytes)          105.2 
+  HiMem Numa Node 0 (MiBytes)        2.6 MiBytes
+  HiMem Numa Node 1 (MiBytes)        4.8 MiBytes
+  HiMem Numa Node 2 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 3 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 4 (MiBytes)       86.0 MiBytes
+  HiMem Numa Node 5 (MiBytes)        1.9 MiBytes
+  HiMem Numa Node 6 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 7 (MiBytes)        3.9 MiBytes
+=============================================================================
+  numanode.5
+-----------------------------------------------------------------------------
+  Process HiMem (MiBytes)          105.1 
+  HiMem Numa Node 0 (MiBytes)        2.4 MiBytes
+  HiMem Numa Node 1 (MiBytes)        4.7 MiBytes
+  HiMem Numa Node 2 (MiBytes)        1.9 MiBytes
+  HiMem Numa Node 3 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 4 (MiBytes)        4.9 MiBytes
+  HiMem Numa Node 5 (MiBytes)       83.2 MiBytes
+  HiMem Numa Node 6 (MiBytes)        2.1 MiBytes
+  HiMem Numa Node 7 (MiBytes)        4.0 MiBytes
+=============================================================================
+  numanode.6
+-----------------------------------------------------------------------------
+  Process HiMem (MiBytes)          105.4 
+  HiMem Numa Node 0 (MiBytes)        2.6 MiBytes
+  HiMem Numa Node 1 (MiBytes)        4.9 MiBytes
+  HiMem Numa Node 2 (MiBytes)        1.9 MiBytes
+  HiMem Numa Node 3 (MiBytes)        2.1 MiBytes
+  HiMem Numa Node 4 (MiBytes)        4.8 MiBytes
+  HiMem Numa Node 5 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 6 (MiBytes)       83.2 MiBytes
+  HiMem Numa Node 7 (MiBytes)        3.8 MiBytes
+=============================================================================
+  numanode.7
+-----------------------------------------------------------------------------
+  Process HiMem (MiBytes)          105.3 
+  HiMem Numa Node 0 (MiBytes)        2.4 MiBytes
+  HiMem Numa Node 1 (MiBytes)        4.8 MiBytes
+  HiMem Numa Node 2 (MiBytes)        2.1 MiBytes
+  HiMem Numa Node 3 (MiBytes)        2.0 MiBytes
+  HiMem Numa Node 4 (MiBytes)        4.9 MiBytes
+  HiMem Numa Node 5 (MiBytes)        1.9 MiBytes
+  HiMem Numa Node 6 (MiBytes)        1.9 MiBytes
+  HiMem Numa Node 7 (MiBytes)       85.3 MiBytes
+=============================================================================
+
+Notes for table 8:
+
+  This table shows memory traffic for numa nodes, taking for each numa
+    node the maximum value across nodes. It also shows the balance in
+    memory traffic by showing the top 3 and bottom 3 node values.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O mem_bw ...
+
+Table 8:  Memory Bandwidth by Numanode
+
+  Memory |    Read |   Write |   Thread |  Memory |  Memory | Numanode
+ Traffic |  Memory |  Memory |     Time | Traffic | Traffic |  PE=HIDE
+  GBytes | Traffic | Traffic |          |  GBytes |       / | 
+         |  GBytes |  GBytes |          |   / Sec | Nominal | 
+         |         |         |          |         |    Peak | 
+|-----------------------------------------------------------------------
+|    0.06 |    0.05 |    0.01 | 0.797848 |    0.08 |    0.0% | numanode.0
+|    0.13 |    0.11 |    0.02 | 0.799200 |    0.16 |    0.1% | numanode.1
+|    0.06 |    0.05 |    0.01 | 0.803045 |    0.07 |    0.0% | numanode.2
+|    0.07 |    0.06 |    0.01 | 0.796151 |    0.08 |    0.0% | numanode.3
+|    0.06 |    0.05 |    0.01 | 0.798337 |    0.07 |    0.0% | numanode.4
+|    0.05 |    0.05 |    0.01 | 0.796764 |    0.07 |    0.0% | numanode.5
+|    0.08 |    0.07 |    0.01 | 0.797502 |    0.10 |    0.0% | numanode.6
+|    0.06 |    0.05 |    0.01 | 0.798371 |    0.07 |    0.0% | numanode.7
+|=======================================================================
+
+Notes for table 9:
+
+  This table shows total wall clock time for the ranks with the
+    maximum, mean, and minimum time, as well as the average across
+    ranks.
+    It also shows maximum memory usage from /proc/self/numa_maps for
+    those ranks, and on average.  The usage is total size of all
+    pages, including huge pages, that were actually mapped into
+    physical memory from both private and shared memory segments.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O program_time ...
+
+Table 9:  Wall Clock Time, Memory High Water Mark
+
+  Process |   Process | PE=[mmm]
+     Time |     HiMem | 
+          | (MiBytes) | 
+         
+ 0.840755 |     105.5 | Total
+|-------------------------------
+| 0.845577 |     105.5 | pe.23
+| 0.843319 |     107.4 | pe.16
+| 0.825474 |     105.4 | pe.29
+|===============================
+
+========================  Additional details  ========================
+
+General table notes:
+
+    The default notes for a table are based on the default definition of
+    the table, and do not account for the effects of command-line options
+    that may modify the content of the table.
+    
+    Detailed notes, produced by the pat_report -v option, do account for
+    all command-line options, and also show how data is aggregated, and
+    if the table content is limited by thresholds, rank selections, etc.
+    
+    An imbalance metric in a line is based on values in main threads
+    across multiple ranks, or on values across all threads, as applicable.
+    
+    An imbalance percent in a line is relative to the maximum value
+    for that line across ranks or threads, as applicable.
+    
+    If the number of Calls for a function is shown as "--", then that
+    function was not traced and the other values in its line summarize
+    the data collected for functions that it calls and that were traced.
+    
+Experiment:  samp_cs_time
+
+Sampling interval:  10000 microsecs
+
+Original path to data file:
+  /cfs/klemming/home/e/edarth/project/bench.out+orig+pat+291508-704239722s/xf-files   (RTS)
+
+Original program:  /cfs/klemming/home/e/edarth/project/bin/bench.out+orig
+
+Instrumented with:  pat_build -O apa bin/bench.out+orig
+
+  Option file "apa" contained:
+    -Drtenv=PAT_RT_PERFCTR=default_samp
+    -Drtenv=PAT_RT_EXPERIMENT=samp_cs_time
+    -Drtenv=PAT_RT_SAMPLING_MODE=3
+    -g upc
+    -g caf
+    -g mpi
+    -g shmem
+    -g syscall
+    -g io
+    -g dl
+
+Instrumented program:
+  /cfs/klemming/home/e/edarth/project/./bench.out+orig+pat
+
+Program invocation:
+  /cfs/klemming/home/e/edarth/project/./bench.out+orig+pat MPI -v
+
+Exit Status:  0 for 32 PEs
+
+Memory pagesize:  4 KiB
+
+Memory hugepagesize:  Not Available
+
+Programming environment:  CRAY
+
+Runtime environment variables:
+  CRAYPAT_LD_LIBRARY_PATH=/opt/cray/pe/perftools/23.12.0/lib64
+  CRAYPAT_OPTS_EXECUTABLE=libexec64/opts
+  CRAYPAT_ROOT=/opt/cray/pe/perftools/23.12.0
+  CRAYPE_VERSION=2.7.30
+  CRAY_BINUTILS_VERSION=/opt/cray/pe/cce/17.0.0
+  CRAY_CC_VERSION=17.0.0
+  CRAY_DSMML_VERSION=0.2.2
+  CRAY_FTN_VERSION=17.0.0
+  CRAY_LIBSCI_VERSION=23.12.5
+  CRAY_MPICH_VERSION=8.1.28
+  CRAY_PERFTOOLS_VERSION=23.12.0
+  CRAY_PE_LIBSCI_VERSION=23.12.5
+  LMOD_FAMILY_COMPILER_VERSION=17.0.0
+  LMOD_FAMILY_CRAYPE_CPU_VERSION=false
+  LMOD_FAMILY_CRAYPE_NETWORK_VERSION=false
+  LMOD_FAMILY_CRAYPE_VERSION=2.7.30
+  LMOD_FAMILY_LIBSCI_VERSION=23.12.5
+  LMOD_FAMILY_MPI_VERSION=8.1.28
+  LMOD_FAMILY_PRGENV_VERSION=8.5.0
+  LMOD_VERSION=8.7.31
+  MPICH_DIR=/opt/cray/pe/mpich/8.1.28/ofi/crayclang/17.0
+  PAT_RT_EXPERIMENT=samp_cs_time
+  PAT_RT_MPI_THREAD_REQUIRED=3
+  PAT_RT_PERFCTR=default_samp
+  PAT_RT_PERFCTR_DISABLE_COMPONENTS=nvml,rocm_smi
+  PAT_RT_SAMPLING_MODE=3
+  PERFTOOLS_VERSION=23.12.0
+  PMI_CONTROL_PORT=21025
+  PMI_JOBID=4031413
+  PMI_LOCAL_RANK=0
+  PMI_LOCAL_SIZE=32
+  PMI_RANK=0
+  PMI_SHARED_SECRET=7536978498253024250
+  PMI_SIZE=64
+  PMI_UNIVERSE_SIZE=64
+
+Report time environment variables:
+    CRAYPAT_ROOT=/opt/cray/pe/perftools/23.12.0
+
+Number of MPI control variables collected:  136
+
+  (To see the list, specify: -s mpi_cvar=show)
+
+Report command line options:  <none>
+
+Operating system:
+  Linux 5.14.21-150500.55.31_13.0.53-cray_shasta_c #1 SMP Mon Dec 4 22:57:12 UTC 2023 (03d3f83)
+
+Hardware performance counter events:
+   CORE_TO_L2_CACHEABLE_REQUEST_ACCESS_STATUS:LS_RD_BLK_C  L2 cache request outcomes. This event does not count accesses to the L2 cache by the L2 prefetcher.:Number of data cache fill requests missing in the L2 (all types).
+   L2_PREFETCH_HIT_L2                                      Number of L2 prefetcher hits in the L2
+   L2_PREFETCH_HIT_L3                                      Number of L2 prefetcher hits in the L3
+   REQUESTS_TO_L2_GROUP1:L2_HW_PF                          TBD:Number of prefetches accepted by L2 pipeline, hit or miss.
+   REQUESTS_TO_L2_GROUP1:RD_BLK_X                          TBD:Number of data cache stores
+
